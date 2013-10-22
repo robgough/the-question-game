@@ -116,6 +116,7 @@ class Solver
   def anagram_finder
     target_word = @question.scan(/"(.*)"/).flatten.first
     other_words = @question.scan(/: (.*)/).flatten.first.split(', ')
-    other_words.select { |word| word if word.size == target_word.size }.first
+    x = other_words.select { |w| w.chars.sort == target_word.chars.sort }
+    x[0]
   end
 end
