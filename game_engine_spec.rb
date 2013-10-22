@@ -32,4 +32,13 @@ describe 'solver' do
       expect(subject).to eq(46656)
     end
   end
+
+  context "solves the eiffel tower" do
+    let(:question) { "eiffel" }
+    subject { Solver.new(question).solve }
+
+    it "returns paris" do
+      expect(subject).to eq('Paris')
+    end
+  end
 end
