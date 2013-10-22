@@ -46,20 +46,29 @@ class Solver
   end
 
   def what_is
-    #match = @question.scan /(\d+)/
-    #match = match.flatten
-    #match[0].to_i + match[1].to_i
-    first = @question.scan(/(\d+)/).first
-    puts "first #{first}"
-    plus = @question.scan(/plus (\d+)/)
-    puts "plus #{plus.inspect}"
-    minus = @question.scan(/minus (\d+)/)
-    puts "minus #{minus.inspect}"
-    multiplied = @question.scan(/multiplied by (\d+)/)
-    puts "multiplied by #{multiplied.inspect}"
-    score = first.flatten
-    score += plus.flatten.inject(:+)
-    puts "score #{score}"
+    score = 0
+    previous = :plus
+    @question.gsub!(/multiplied by/, 'multiply')
+    @question.split(' ').each do |word|
+      puts word
+      begin
+        value = Integer(word)
+      rescue
+        value = word
+      end
+
+      if value.class == Fixnum
+        if previous == "plus" || previous == "is"
+          score = score + value 
+        elsif previous == "minus"
+          score = score - value
+        else
+          score = score * value
+        end
+      else
+        previous = word
+      end
+    end
     score
   end
 
