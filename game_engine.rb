@@ -88,7 +88,7 @@ class Solver
       array << letters[:"#{char}"]
     end
     array.map!(&:to_i).inject(0) { |total, num| total += num }
-
+  end
   def anagram_finder
     target_word = @question.scan(/"(.*)"/).flatten.first
     other_words = @question.scan(/: (.*)/).flatten.first.split(', ')
