@@ -41,4 +41,14 @@ describe 'solver' do
       expect(subject).to eq('Paris')
     end
   end
+
+  context "anagrams" do
+    let(:question) { 'which of the following is an anagram of "admirer": dairy, random, married, border, forgot' }
+
+    subject { Solver.new(question).solve }
+
+    it "picks the correct word" do
+      expect(subject).to eq('married')
+    end
+  end
 end
