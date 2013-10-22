@@ -28,4 +28,23 @@ describe 'solver' do
   it 'should correctly answer what is fibonacci' do
     expect(what_is_fibonacci_solver.solve).to eq(987)
   end
+
+  context "solves powers of" do
+    let(:question) { "what is 6 to the power of 6" }
+
+    subject { Solver.new(question).solve }
+
+    it "solves to the power of" do
+      expect(subject).to eq(46656)
+    end
+  end
+
+  context "solves the eiffel tower" do
+    let(:question) { "eiffel" }
+    subject { Solver.new(question).solve }
+
+    it "returns paris" do
+      expect(subject).to eq('Paris')
+    end
+  end
 end

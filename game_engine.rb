@@ -7,21 +7,9 @@ end
 require "sinatra/reloader"
 
 get '/' do
+  puts '*'*100
   puts params.inspect
-  q = Question.new(params[:q])
-  output = q.solve
-  puts output
-  output.to_s
-end
-
-def question_what_is question
-  match = question.match /(\d+).+(\d+)/
-  puts match.inspect
-  match[1].to_i + match[2].to_i
-end
-
-def question_which_is question
-
+  Question.new(params[:q]).solve.to_s
 end
 
 class Question
@@ -30,15 +18,11 @@ class Question
   end
 
   def split
-    #a = @question.scan(/[0-9a-z]+: (.+)/)
-    #puts a.inspect
-    #a.flatten
     @question[10..-1]
   end
 
   def solve
-    s = Solver.new(split)
-    s.solve
+    Solver.new(split).solve
   end
 end
 
@@ -50,20 +34,22 @@ class Solver
   def solve
     if @question.match /fibonacci/
       what_is_fibonacci
+    elsif @question.match /the power/
+      power_of
     elsif @question.match /what is/
       what_is
     elsif @question.match /largest/
       which_largest
+    elsif @question.match /eiffel/
+      'Paris'
+    else
+      1
     end
   end
 
   def what_is
-    puts "running what is"
-    match = []
-    puts @question
     match = @question.scan /(\d+)/
     match = match.flatten
-    puts match
     match[0].to_i + match[1].to_i
   end
 
@@ -85,4 +71,8 @@ class Solver
     a
   end
 
+  def power_of
+    match = @question.scan(/(\d+)/).flatten
+    match[0].to_i ** match[1].to_i
+  end
 end
