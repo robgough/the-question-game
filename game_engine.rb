@@ -7,6 +7,8 @@ end
 require "sinatra/reloader"
 
 get '/' do
+  puts '*'*100
+  puts params.inspect
   Question.new(params[:q]).solve.to_s
 end
 
@@ -36,6 +38,8 @@ class Solver
       what_is
     elsif @question.match /largest/
       which_largest
+    elsif @question.match /eiffel/
+      'Paris'
     else
       1
     end
