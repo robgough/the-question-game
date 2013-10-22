@@ -22,4 +22,14 @@ describe 'solver' do
   it 'should correctly answer which is' do
     expect(which_is_largest_solver.solve).to eq("123")
   end
+
+  context "solves powers of" do
+    let(:question) { "what is 6 to the power of 6" }
+
+    subject { Solver.new(question).solve }
+
+    it "solves to the power of" do
+      expect(subject).to eq(46656)
+    end
+  end
 end
