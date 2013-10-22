@@ -16,10 +16,16 @@ describe 'solver' do
   let (:what_is_question) { "what is 5 + 6" }
   let (:which_is_question) { "which of the following numbers is the largest: 100 101 123" }
   let (:which_is_largest_solver) { Solver.new(which_is_question) }
+  let (:what_is_fibonacci_question) { "what is the 16th fibonacci number" }
+  let (:what_is_fibonacci_solver) {Solver.new(what_is_fibonacci_question) }
   it 'should correctly answer what is' do
-    expect(what_is_solver.solve).to eq(11) 
+    expect(what_is_solver.solve).to eq(11)
   end
   it 'should correctly answer which is' do
     expect(which_is_largest_solver.solve).to eq("123")
+  end
+
+  it 'should correctly answer what is fibonacci' do
+    expect(what_is_fibonacci_solver.solve).to eq(987)
   end
 end
