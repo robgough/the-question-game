@@ -32,7 +32,9 @@ class Solver
   end
 
   def solve
-    if @question.match /the power/
+    if @question.match /fibonacci/
+      what_is_fibonacci
+    elsif @question.match /the power/
       power_of
     elsif @question.match /what is/
       what_is
@@ -57,6 +59,18 @@ class Solver
     match = @question.scan /(\d+)/
     match = match.flatten
     match.max
+  end
+
+  def what_is_fibonacci
+    match = @question.scan /(\d+)/
+    match = match.flatten[0].to_i
+    nth_fibonacci(match)
+  end
+
+  def nth_fibonacci(n)
+    a, b = 0, 1
+    (n).times { a, b = b, a+b }
+    a
   end
 
   def power_of
