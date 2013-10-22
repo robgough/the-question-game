@@ -1,4 +1,4 @@
-task :default => [:clear, :run]
+task :default => [:clear, :test]
 task "clear" do
   sh "clear"
 end
@@ -8,5 +8,5 @@ task "run" do
 end
 
 task "test" do
-  sh "rspec"
+  sh "rspec game_engine_spec.rb"
 end
