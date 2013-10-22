@@ -4,9 +4,13 @@ task "clear" do
 end
 desc "start sinatra"
 task "run" do
-  sh "ruby game_engine.rb"
+  sh "ruby live/game_engine.rb"
 end
 
 task "test" do
   sh "rspec game_engine_spec.rb"
+end
+
+task "deploy" do
+  sh "cp game_engine.rb live/"
 end

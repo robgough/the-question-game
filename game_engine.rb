@@ -9,7 +9,9 @@ require "sinatra/reloader"
 get '/' do
   puts params.inspect
   q = Question.new(params[:q])
-  q.solve
+  output = q.solve
+  puts output
+  output.to_s
 end
 
 def question_what_is question
@@ -28,7 +30,10 @@ class Question
   end
 
   def split
-    @question.split(':').last
+    #a = @question.scan(/[0-9a-z]+: (.+)/)
+    #puts a.inspect
+    #a.flatten
+    @question[10..-1]
   end
 
   def solve
@@ -45,19 +50,24 @@ class Solver
   def solve
     if @question.match /what is/
       what_is
-    elsif @question.match /which/
-      which
+    elsif @question.match /largest/
+      which_largest
     end
   end
 
   def what_is
+    puts "running what is"
     match = []
     puts @question
     match = @question.scan /(\d+)/
     match = match.flatten
+    puts match
     match[0].to_i + match[1].to_i
   end
 
-  def which
+  def which_largest
+    match = @question.scan /(\d+)/
+    match = match.flatten
+    match.max
   end
 end
