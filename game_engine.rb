@@ -44,6 +44,8 @@ class Solver
       which_largest
     elsif @question.match /eiffel/
       'Paris'
+    elsif @question.match /anagram/
+      anagram_finder
     else
       1
     end
@@ -86,5 +88,10 @@ class Solver
       array << letters[:"#{char}"]
     end
     array.map!(&:to_i).inject(0) { |total, num| total += num }
+
+  def anagram_finder
+    target_word = @question.scan(/"(.*)"/).flatten.first
+    other_words = @question.scan(/: (.*)/).flatten.first.split(', ')
+    other_words.select { |word| word if word.size == target_word.size }.first
   end
 end
