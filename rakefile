@@ -1,0 +1,12 @@
+task :default => [:clear, :run]
+task "clear" do
+  sh "clear"
+end
+desc "start sinatra"
+task "run" do
+  sh "ruby game_engine.rb"
+end
+
+task "test" do
+  sh "rspec"
+end

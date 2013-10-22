@@ -10,7 +10,3 @@ get '/' do
   puts params.inspect
   "Team Awesome"
 end
-
-get '/hello' do
-  "hello"
-end
