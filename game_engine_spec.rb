@@ -1,9 +1,9 @@
 require_relative 'game_engine'
 describe 'question' do
   let(:question) { Question.new(what_is) }
-  let(:what_is) { "9544DA10: what is 5 + 6" }
+  let(:what_is) { "9544DA10: what is 5 plus 6" }
   it 'splits a question' do
-    expect(question.split).to eq("what is 5 + 6")
+    expect(question.split).to eq("what is 5 plus 6")
   end
 
   it 'should should answer 5 + 6' do
@@ -13,7 +13,7 @@ end
 
 describe 'solver' do
   let (:what_is_solver) { Solver.new(what_is_question) }
-  let (:what_is_question) { "what is 5 + 6" }
+  let (:what_is_question) { "what is 5 plus 6" }
   let (:which_is_question) { "which of the following numbers is the largest: 100 101 123" }
   let (:which_is_largest_solver) { Solver.new(which_is_question) }
   

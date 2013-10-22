@@ -9,7 +9,10 @@ require "sinatra/reloader"
 get '/' do
   puts '*'*100
   puts params.inspect
-  Question.new(params[:q]).solve.to_s
+
+  var = Question.new(params[:q]).solve.to_s
+  puts var
+  var
 end
 
 class Question
