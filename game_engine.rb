@@ -34,6 +34,8 @@ class Solver
   def solve
     if @question.match /fibonacci/
       what_is_fibonacci
+    elsif @question.match /scrabble/
+      what_is_scrabble_score
     elsif @question.match /the power/
       power_of
     elsif @question.match /what is/
@@ -74,5 +76,15 @@ class Solver
   def power_of
     match = @question.scan(/(\d+)/).flatten
     match[0].to_i ** match[1].to_i
+  end
+
+  def what_is_scrabble_score
+    letters = { e: 1, a: 1, i: 1, o: 1, n: 1, r: 1, t: 1, l: 1, s: 1, u: 1, d: 2, g: 2, b: 3, c: 3, m: 3, p: 3, f: 4, h: 4, v: 4, w: 4, y:4, k: 5, j: 8, x: 8, q: 10, z: 10 }
+    match = @question.split(" ").last.downcase
+    array = []
+    match.each_char do |char|
+      array << letters[:"#{char}"]
+    end
+    array.map!(&:to_i).inject(0) { |total, num| total += num }
   end
 end

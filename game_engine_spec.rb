@@ -18,6 +18,9 @@ describe 'solver' do
   let (:which_is_largest_solver) { Solver.new(which_is_question) }
   let (:what_is_fibonacci_question) { "what is the 16th fibonacci number" }
   let (:what_is_fibonacci_solver) {Solver.new(what_is_fibonacci_question) }
+  let (:what_is_scrabble_score_question) { "what is the scrabble score of banana" }
+  let (:what_is_scrabble_score_solver) {Solver.new(what_is_scrabble_score_question) }
+
   it 'should correctly answer what is' do
     expect(what_is_solver.solve).to eq(11)
   end
@@ -27,6 +30,10 @@ describe 'solver' do
 
   it 'should correctly answer what is fibonacci' do
     expect(what_is_fibonacci_solver.solve).to eq(987)
+  end
+
+  it 'should correctly answer what is scrabble score' do
+    expect(what_is_scrabble_score_solver.solve).to eq(8)
   end
 
   context "solves powers of" do
