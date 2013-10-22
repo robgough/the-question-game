@@ -46,9 +46,21 @@ class Solver
   end
 
   def what_is
-    match = @question.scan /(\d+)/
-    match = match.flatten
-    match[0].to_i + match[1].to_i
+    #match = @question.scan /(\d+)/
+    #match = match.flatten
+    #match[0].to_i + match[1].to_i
+    first = @question.scan(/(\d+)/).first
+    puts "first #{first}"
+    plus = @question.scan(/plus (\d+)/)
+    puts "plus #{plus.inspect}"
+    minus = @question.scan(/minus (\d+)/)
+    puts "minus #{minus.inspect}"
+    multiplied = @question.scan(/multiplied by (\d+)/)
+    puts "multiplied by #{multiplied.inspect}"
+    score = first.flatten
+    score += plus.flatten.inject(:+)
+    puts "score #{score}"
+    score
   end
 
   def which_largest
