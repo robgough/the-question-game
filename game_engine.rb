@@ -9,7 +9,10 @@ require "sinatra/reloader"
 get '/' do
   puts '*'*100
   puts params.inspect
-  Question.new(params[:q]).solve.to_s
+
+  var = Question.new(params[:q]).solve.to_s
+  puts var
+  var
 end
 
 class Question
@@ -52,9 +55,30 @@ class Solver
   end
 
   def what_is
-    match = @question.scan /(\d+)/
-    match = match.flatten
-    match[0].to_i + match[1].to_i
+    score = 0
+    previous = :plus
+    @question.gsub!(/multiplied by/, 'multiply')
+    @question.split(' ').each do |word|
+      puts word
+      begin
+        value = Integer(word)
+      rescue
+        value = word
+      end
+
+      if value.class == Fixnum
+        if previous == "plus" || previous == "is"
+          score = score + value 
+        elsif previous == "minus"
+          score = score - value
+        else
+          score = score * value
+        end
+      else
+        previous = word
+      end
+    end
+    score
   end
 
   def which_largest
