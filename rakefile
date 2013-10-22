@@ -12,5 +12,10 @@ task "test" do
 end
 
 task "deploy" do
+  sh "cp live/game_engine.rb live/game_engine.rb.previous"
   sh "cp game_engine.rb live/"
+end
+
+task "rollback" do
+  sh "cp live/game_engine.rb.previous live/game_engine.rb"
 end
