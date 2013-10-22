@@ -40,6 +40,8 @@ class Solver
       which_largest
     elsif @question.match /eiffel/
       'Paris'
+    elsif @question.match /anagram/
+      anagram_finder
     else
       1
     end
@@ -60,5 +62,11 @@ class Solver
   def power_of
     match = @question.scan(/(\d+)/).flatten
     match[0].to_i ** match[1].to_i
+  end
+
+  def anagram_finder
+    target_word = @question.scan(/"(.*)"/).flatten.first
+    other_words = @question.scan(/: (.*)/).flatten.first.split(', ')
+    other_words.select { |word| word if word.size == target_word.size }.first
   end
 end
